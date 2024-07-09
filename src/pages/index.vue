@@ -1,4 +1,5 @@
 <!-- The template is where you can define the structure of the component using html-->
+ <!--TODO: Make search work, make selected items favourite, remove brackets from authors-->
 <template>
   <div class="home">
       <v-img
@@ -7,11 +8,19 @@
         src="@/assets/logo.png"
       />
 
-      <h1>Welcome to Acme Books</h1>
+      <h1>Welcome to Bens's Books</h1>
 
       <div class="cards-container">
         <!-- Step 2: use the book-card component here -->
-      </div>
+        <book-card
+          v-for="book in favoriteBooks"
+          :key="book.isbn"
+          :title="book.title"
+          :description="book.shortDescription"
+          :thumbnail="book.thumbnailUrl"
+          :author="book.authors.join(', ')"
+          :favourite="book.favourite"
+        /></div>
   </div>
 </template>
 
@@ -21,6 +30,7 @@
 import { getFavoriteBooks } from '@/services/api.service';
 import { ref } from 'vue';
 
+let f
 const favoriteBooks = ref([]);
 
 getFavoriteBooks().then((books) => {
@@ -38,6 +48,6 @@ getFavoriteBooks().then((books) => {
 }
 
 .cards-container {
-  /* Add styles here */
+  font-size: large;
 }
 </style>
