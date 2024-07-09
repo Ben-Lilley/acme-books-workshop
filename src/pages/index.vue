@@ -28,14 +28,15 @@
  This is where you can define variables and functions that will be used in the template -->
 <script setup>
 import { getFavoriteBooks } from '@/services/api.service';
+import { useAppStore } from '@/stores/app';
 import { ref } from 'vue';
 
+const store = useAppStore();
 let f
 const favoriteBooks = ref([]);
+console.log(favoriteBooks)
 
-getFavoriteBooks().then((books) => {
-  favoriteBooks.value = books;
-});
+favoriteBooks.value = store.getFavourite;
 </script>
 
 <!-- The style tag is where you can define styles that will only apply to this component -->

@@ -15,7 +15,7 @@
         </v-card-item>
 
         <v-card-actions>
-          <v-btn onclick="updateBook(key, favourite)">
+          <v-btn onclick="store.updateFavourite(key, favourite)">
             favourite
           </v-btn>
         </v-card-actions>
@@ -38,7 +38,10 @@
  This is where you can define variables and functions that will be used in the template -->
 <script setup>
     import { defineProps } from "vue";
-import { stringifyQuery } from "vue-router";
+    import { useAppStore } from '@/stores/app';
+
+    const store = useAppStore();
+
 
     // Define the props that this component will accept
     defineProps({
