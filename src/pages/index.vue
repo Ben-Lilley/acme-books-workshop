@@ -1,5 +1,5 @@
 <!-- The template is where you can define the structure of the component using html-->
- <!--TODO: Make search work, make selected items favourite, remove brackets from authors-->
+ <!--TODO: Make search work (search cannot be imported??), make the favourite buttons work on the homepage (key and favourite variables have to be transfered over to bookcard)-->
 <template>
   <div class="home">
       <v-img
@@ -21,6 +21,7 @@
           :author="book.authors.join(', ')"
           :favourite="book.favourite"
         /></div>
+        
   </div>
 </template>
 
@@ -34,9 +35,9 @@ import { ref } from 'vue';
 const store = useAppStore();
 let f
 const favoriteBooks = ref([]);
-console.log(favoriteBooks)
 
 favoriteBooks.value = store.getFavourite;
+
 </script>
 
 <!-- The style tag is where you can define styles that will only apply to this component -->

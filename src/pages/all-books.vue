@@ -18,6 +18,7 @@
             :item-value="item => `${item.title}`"
             :headers="headers"
             :items="allBooks"
+            :search="search"
             return-object
             show-select
         ></v-data-table>
@@ -31,6 +32,7 @@
 // import the getBooks function here, and define your table data, and table headers.
 import {ref} from 'vue'
 import { getBooks, getFavoriteBooks, updateBook } from '@/services/api.service';
+
 
 let allBooks = ref([])
 let favourited = ref([])

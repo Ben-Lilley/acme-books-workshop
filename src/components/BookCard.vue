@@ -15,7 +15,7 @@
         </v-card-item>
 
         <v-card-actions>
-          <v-btn onclick="store.updateFavourite(key, favourite)">
+          <v-btn @click="store.updateFavourite(key , !favourite)">
             favourite
           </v-btn>
         </v-card-actions>
@@ -42,14 +42,22 @@
 
     const store = useAppStore();
 
+    const onclick = () => {
+        store.updateFavourite(key , favourite)
+    }
+
 
     // Define the props that this component will accept
+    //key is not defined?
     defineProps({
         title: String,
         description: String,
         thumbnail: String,
-        author: String
-    });
+        author: String,
+        key: Number,
+        favourite: Boolean
+    }); 
+    
 </script>
 
 <!-- The style tag is where you can define styles that will only apply to this component -->
