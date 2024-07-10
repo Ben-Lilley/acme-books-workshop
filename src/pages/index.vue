@@ -1,5 +1,5 @@
 <!-- The template is where you can define the structure of the component using html-->
- <!--TODO: Create new books though all books table (api service will not accept books as they already exist), menu in home page to favourite new books, create new book text boxes not storing text -->
+ <!--TODO: Create new books though all books table (api service will not accept books as they already exist), menu in home page to favourite new books -->
 <template>
   <div class="home">
       <v-img
