@@ -14,6 +14,10 @@ export const useAppStore = defineStore('app', {
     },
     updateFavourite(isbn, favorite) {
       this.books.find((book)=> book.isbn == isbn).favorite = favorite;
+    },
+
+    createBook(book){
+      this.createBook(book)
     }
   }
 })

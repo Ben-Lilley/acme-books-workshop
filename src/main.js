@@ -7,6 +7,8 @@
 // Plugins
 import { registerPlugins } from '@/plugins'
 
+import { createVuetify } from 'vuetify'
+
 // Components
 import App from './App.vue'
 
@@ -30,3 +32,10 @@ const store = useAppStore()
 getBooks().then((books)=>{
     store.setBooks(books);
 })
+
+export const vuetify = createVuetify({
+    theme: {
+      defaultTheme: 'light',
+      //
+    },
+  })

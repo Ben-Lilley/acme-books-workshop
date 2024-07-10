@@ -1,7 +1,9 @@
 <!-- The template is where you can define the structure of the component using html-->
 <template>
     <!-- The v-card component is a Vuetify component that displays a card -->
-     <v-card>
+     <v-card
+     elevation="16"
+     >
      <v-card-item>
             <v-card-title>
             {{ title }}
@@ -14,18 +16,20 @@
             </v-card-text>
         </v-card-item>
 
-        <v-card-actions>
-          <v-btn @click="store.updateFavourite(key , !favourite)">
-            favourite
-          </v-btn>
-        </v-card-actions>
-
         <v-img
         height="25%"
         width="25%"
         :src="thumbnail"
         cover
         ></v-img>
+
+        <v-card-actions>
+          <v-btn @click="store.updateFavourite(key , !favourite)">
+            favourite
+          </v-btn>
+        </v-card-actions>
+
+
 
     </v-card>
 

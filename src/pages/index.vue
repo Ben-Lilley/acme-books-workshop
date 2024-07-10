@@ -1,5 +1,5 @@
 <!-- The template is where you can define the structure of the component using html-->
- <!--TODO: Make search work (search cannot be imported??), make the favourite buttons work on the homepage (key and favourite variables have to be transfered over to bookcard)-->
+ <!--TODO: Create new books though all books table (api service will not accept books as they already exist), menu in home page to favourite new books, create new book text boxes not storing text -->
 <template>
   <div class="home">
       <v-img
@@ -9,7 +9,7 @@
       />
 
       <h1>Welcome to Bens's Books</h1>
-
+      
       <div class="cards-container">
         <!-- Step 2: use the book-card component here -->
         <book-card
@@ -38,6 +38,16 @@ const favoriteBooks = ref([]);
 
 favoriteBooks.value = store.getFavourite;
 
+</script>
+
+<script>
+  export default {
+    data () {
+      return {
+        drawer: null,
+      }
+    },
+  }
 </script>
 
 <!-- The style tag is where you can define styles that will only apply to this component -->
