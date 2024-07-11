@@ -17,7 +17,9 @@ export const useAppStore = defineStore('app', {
     },
 
     addBook(book){
-      this.books = this.books.append(book)
+    this.books.push(book)
+    console.log('new book', book);
+    console.log('find', this.books.find((b) => b.isbn === book.isbn))
   }
 }
 })

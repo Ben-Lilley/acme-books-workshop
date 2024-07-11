@@ -1,5 +1,5 @@
 <!-- The template is where you can define the structure of the component using html-->
- <!--TODO: Create new books though all books table (thumbnail url is undefined???), menu in home page to favourite new books, make data table headings visible -->
+ <!--TODO: menu in home page to favourite new books, make data table headings visible -->
 <template>
   <div class="home">
       <v-img
@@ -27,18 +27,16 @@
                         Favourite a Book:
                     </v-card-text>
 
-                    <v-card-text class="px-4" style="height: 300px;">
-                      <v-radio-group
-                        v-model="dialog"
-                        messages="Select a book to favourite"
-                        column
-                      >
-                    
-                      <v-radio label="test1">
-                      </v-radio>
-                    
-                    </v-radio-group>
-                    </v-card-text>
+                    <v-container>
+                      <v-form>
+                        <v-radio-group v-model="selected" column>
+                          <v-radio
+                            v-for="book in books"
+                            label={{ title }}
+                          ></v-radio>
+                        </v-radio-group>
+                      </v-form>
+                    </v-container>
 
                     <v-spacer></v-spacer>
 
@@ -77,8 +75,10 @@ import { ref } from 'vue';
 const store = useAppStore();
 let f
 const favoriteBooks = ref([]);
+const books = ref([]);
 
 favoriteBooks.value = store.getFavourite;
+books.value = store.setBooks;
 
 </script>
 

@@ -13,7 +13,7 @@
                 >Add Book</v-btn>
             </template>
 
-            <template v-slot:default="{ isActive }">
+            <template v-slot:default="{ isActive: isDialogOpen }">
                 <v-card title="Book Creation">
                     <v-card-text>
                         Add new book:
@@ -76,7 +76,7 @@
                     </v-card-text>
                     <v-btn
                         text="Close Dialog"
-                        @click="isActive.value = false"
+                        @click="isDialogOpen.value = false"
                     >Close Dialog</v-btn>
                     <v-btn
                         text="Submit"
@@ -113,6 +113,7 @@
 <script setup>
 import { ref } from 'vue';
 import { createBook, getBooks, getFavoriteBooks } from '@/services/api.service';
+import { useAppStore } from '@/stores/app';
 
 const newBookName = ref('');
 const newAuthors = ref('');
@@ -121,17 +122,18 @@ const newPageCount = ref();
 const newIsbn = ref('');
 const newPD = ref('')
 const newURL = ref('')
-const allBooks = ref([]);
+// const allBooks = ref([]);
 const favourited = ref([]);
+const store = useAppStore();
+const isDialogOpen = ref(false)
 
-const fetchBooks = async () => {
-    favourited.value = await getFavoriteBooks();
-    allBooks.value = await getBooks();
-};
+favourited.value = store.getFavourite
+const allBooks = store.books
 
-fetchBooks();
+
 
 const submitBook = () => {
+    isDialogOpen.value = false;
     const newBook = {
         title: newBookName.value,
         authors: newnewAuthors.value,
@@ -140,13 +142,8 @@ const submitBook = () => {
         publishedDate: newPD.value,
         thumbnailURL: newURL.value
     };
-    createBook(newBook);
-    newBookName.value = '';
-    newAuthors.value = '';
-    newPageCount.value;
-    newIsbn.value = '';
-    newPD.value = '';
-    newURL.value = '';
+    console.log('add book')
+    store.addBook(newBook);
 };
 
 const headers = [
