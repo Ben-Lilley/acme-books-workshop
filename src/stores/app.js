@@ -16,8 +16,8 @@ export const useAppStore = defineStore('app', {
       this.books.find((book)=> book.isbn == isbn).favorite = favorite;
     },
 
-    createBook(book){
-      this.createBook(book)
-    }
+    addBook(book){
+      this.books = this.books.append(book)
   }
+}
 })

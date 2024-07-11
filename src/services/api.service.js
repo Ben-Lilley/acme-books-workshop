@@ -45,7 +45,8 @@ export function createBook (book) {
     return new Promise((resolve, reject) => {
         getBookByIsbn(book.isbn)
             .catch(() => {
-                validateBook(book).catch((error) => reject(error));
+                //validateBook(book).catch((error) => reject(error));
+                console.log(book.isbn)
 
                 const defaultValues = {
                     pageCount: -1,
@@ -73,9 +74,6 @@ export function createBook (book) {
                     }, serverLatency);
                 });
             })
-            .then((book) => {
-                reject(new Error('Book already exists', book));
-            });
     });
 }
 
@@ -153,6 +151,7 @@ function validateBook (book) {
     }
 
     if(typeof book.thumbnailUrl !== 'string') {
+        console.log(book.thumbnailUrl)
         throw new Error('Thumbnail URL must be a string');
     }
 

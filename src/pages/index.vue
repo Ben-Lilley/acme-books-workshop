@@ -1,5 +1,5 @@
 <!-- The template is where you can define the structure of the component using html-->
- <!--TODO: Create new books though all books table (api service will not accept books as they already exist), menu in home page to favourite new books -->
+ <!--TODO: Create new books though all books table (thumbnail url is undefined???), menu in home page to favourite new books, make data table headings visible -->
 <template>
   <div class="home">
       <v-img
@@ -9,6 +9,48 @@
       />
 
       <h1>Welcome to Bens's Books</h1>
+
+
+      <v-dialog max-width="500">
+            <template v-slot:activator="{ props: activatorProps }">
+                <v-btn
+                    v-bind="activatorProps"
+                    color="surface-variant"
+                    text="Favourite books"
+                    variant="flat"
+                >Favourite books</v-btn>
+            </template>
+
+            <template v-slot:default="{ isActive }">
+                <v-card title="Favourite book">
+                    <v-card-text>
+                        Favourite a Book:
+                    </v-card-text>
+
+                    <v-card-text class="px-4" style="height: 300px;">
+                      <v-radio-group
+                        v-model="dialog"
+                        messages="Select a book to favourite"
+                        column
+                      >
+                    
+                      <v-radio label="test1">
+                      </v-radio>
+                    
+                    </v-radio-group>
+                    </v-card-text>
+
+                    <v-spacer></v-spacer>
+
+                        <v-divider></v-divider>
+                        <v-spacer></v-spacer>
+                    <v-btn
+                        text="Close Dialog"
+                        @click="isActive.value = false"
+                    >Close Dialog</v-btn>
+                </v-card>
+            </template>
+        </v-dialog>
       
       <div class="cards-container">
         <!-- Step 2: use the book-card component here -->

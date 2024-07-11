@@ -47,6 +47,30 @@
                             ></v-text-field>
                         </v-col>
 
+                        <v-col cols="12" md="12" sm="6">
+                            <v-text-field
+                                v-model="newIsbn"
+                                label="Book id*"
+                                required
+                            ></v-text-field>
+                        </v-col>
+
+                        <v-col cols="12" md="12" sm="6">
+                            <v-text-field
+                                v-model="newPD"
+                                label="Published Date*"
+                                required
+                            ></v-text-field>
+                        </v-col>
+
+                        <v-col cols="12" md="12" sm="6">
+                            <v-text-field
+                                v-model="newURL"
+                                label="Thumbnail Url*"
+                                required
+                            ></v-text-field>
+                        </v-col>
+
                         <v-divider></v-divider>
                         <v-spacer></v-spacer>
                     </v-card-text>
@@ -92,7 +116,11 @@ import { createBook, getBooks, getFavoriteBooks } from '@/services/api.service';
 
 const newBookName = ref('');
 const newAuthors = ref('');
-const newPageCount = ref('');
+const newnewAuthors = ref([newAuthors]);
+const newPageCount = ref();
+const newIsbn = ref('');
+const newPD = ref('')
+const newURL = ref('')
 const allBooks = ref([]);
 const favourited = ref([]);
 
@@ -106,14 +134,19 @@ fetchBooks();
 const submitBook = () => {
     const newBook = {
         title: newBookName.value,
-        authors: newAuthors.value,
-        pageCount: newPageCount.value,
+        authors: newnewAuthors.value,
+        pageCount: Number(newPageCount.value),
+        isbn: newIsbn.value,
+        publishedDate: newPD.value,
+        thumbnailURL: newURL.value
     };
     createBook(newBook);
-    // Optionally clear the form fields
     newBookName.value = '';
     newAuthors.value = '';
-    newPageCount.value = '';
+    newPageCount.value;
+    newIsbn.value = '';
+    newPD.value = '';
+    newURL.value = '';
 };
 
 const headers = [
