@@ -1,4 +1,5 @@
 // Utilities
+import { deleteBook } from '@/services/api.service';
 import { defineStore } from 'pinia'
 
 export const useAppStore = defineStore('app', {
@@ -18,8 +19,17 @@ export const useAppStore = defineStore('app', {
 
     addBook(book){
     this.books.push(book)
-    console.log('new book', book);
-    console.log('find', this.books.find((b) => b.isbn === book.isbn))
-  }
+  },
+
+    deleteBook(isbn){
+      this.books.splice(this.books.find((book)=> book.isbn == isbn), 1)
+    },
+
+    editBook(isbn, title, authors, pageCount){
+      console.log(isbn, title, authors, pageCount)
+      this.books.find((book)=> book.isbn == isbn).title = title
+      this.books.find((book)=> book.isbn == isbn).authors = authors
+      this.books.find((book)=> book.isbn == isbn).pageCount = pageCount
+    }
 }
 })

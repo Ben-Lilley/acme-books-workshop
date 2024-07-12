@@ -1,5 +1,5 @@
 <!-- The template is where you can define the structure of the component using html-->
- <!--TODO: menu in home page to favourite new books, make data table headings visible -->
+ <!--TODO: menu in home page to favourite new books, make data table headings visible, remove brackets around author names in data table, add edit and delete functions to the data table -->
 <template>
   <div class="home">
       <v-img
@@ -12,9 +12,9 @@
 
 
       <v-dialog max-width="500">
-            <template v-slot:activator="{ props: activatorProps }">
+            <template v-slot:activator="{ props: books }">
                 <v-btn
-                    v-bind="activatorProps"
+                    v-bind="books"
                     color="surface-variant"
                     text="Favourite books"
                     variant="flat"
@@ -29,7 +29,7 @@
 
                     <v-container>
                       <v-form>
-                        <v-radio-group v-model="selected" column>
+                        <v-radio-group v-model="books" column>
                           <v-radio
                             v-for="book in books"
                             label={{ title }}
